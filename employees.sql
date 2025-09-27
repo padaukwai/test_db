@@ -108,9 +108,10 @@ CREATE OR REPLACE VIEW current_dept_emp AS
         ON d.emp_no=l.emp_no AND d.from_date=l.from_date AND l.to_date = d.to_date;
 
 flush /*!50503 binary */ logs;
+LOAD DATA INFILE '/docker-entrypoint-initdb.d/load_departments.dump' INTO TABLE departments;
 
 SELECT 'LOADING departments' as 'INFO';
-source load_departments.dump ;
+#source load_departments.dump ;
 SELECT 'LOADING employees' as 'INFO';
 source load_employees.dump ;
 SELECT 'LOADING dept_emp' as 'INFO';
